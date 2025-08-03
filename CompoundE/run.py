@@ -27,6 +27,7 @@ import time
 from tensorboardX import SummaryWriter
 import os.path as osp
 
+
 def parse_args(args=None):
     parser = argparse.ArgumentParser(
         description='Training and Testing Knowledge Graph Embedding Models',
@@ -40,7 +41,7 @@ def parse_args(args=None):
     parser.add_argument('--do_test', action='store_true')
     parser.add_argument('--evaluate_train', action='store_true', help='Evaluate on training data')
 
-    parser.add_argument('--dataset', type=str, default='ogbl-wikikg2', help='dataset name, default to wikikg')
+    parser.add_argument('--dataset', type=str, default='FB15k237', help='dataset name, e.g., FB15k237, WN18RR, ogbl-wikikg2')
     parser.add_argument('--model', default='TransE', type=str)
     parser.add_argument('-de', '--double_entity_embedding', action='store_true')
     parser.add_argument('-dr', '--double_relation_embedding', action='store_true')
@@ -80,13 +81,8 @@ def parse_args(args=None):
     return parser.parse_args(args)
 
 def override_config(args):
-    '''
-    Override model and data configuration
-    '''
-
     with open(os.path.join(args.init_checkpoint, 'config.json'), 'r') as fjson:
         argparse_dict = json.load(fjson)
-
     args.dataset = argparse_dict['dataset']
     args.model = argparse_dict['model']
     args.double_entity_embedding = argparse_dict['double_entity_embedding']
@@ -97,38 +93,71 @@ def override_config(args):
     args.test_batch_size = argparse_dict['test_batch_size']
 
 def save_model(model, optimizer, save_variable_list, args):
-    '''
-    Save the parameters of the model and the optimizer,
-    as well as some other variables such as step and learning_rate
-    '''
-
     argparse_dict = vars(args)
     with open(os.path.join(args.save_path, 'config.json'), 'w') as fjson:
         json.dump(argparse_dict, fjson)
-
+    torch.save(
+        {
+            **save_variable_list,
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict()
+        },
+        os.path.join(args.save_path, 'checkpoint')
+    )
     entity_embedding = model.entity_embedding.detach().cpu().numpy()
-    np.save(
-        os.path.join(args.save_path, 'entity_embedding'),
-        entity_embedding
-    )
-
+    np.save(os.path.join(args.save_path, 'entity_embedding'), entity_embedding)
     relation_embedding = model.relation_embedding.detach().cpu().numpy()
-    np.save(
-        os.path.join(args.save_path, 'relation_embedding'),
-        relation_embedding
-    )
+    np.save(os.path.join(args.save_path, 'relation_embedding'), relation_embedding)
+
+
+def read_triples(file_path):
+    triples = []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            h, r, t = line.strip().split('\t')
+            triples.append((int(h), int(r), int(t)))
+    return triples
+
+def load_legacy_dataset(dataset_name):
+    """Loads FB15k-237 and WN18RR datasets."""
+    logging.info(f"Loading legacy dataset: {dataset_name}")
+    data_dir = f'../SimKGC/data/{dataset_name}'
+
+    # In SimKGC data folder, they use entities.txt and relations.txt
+    # but CompoundE original code seems to assume entity2id.txt format.
+    # We will assume the files are named entities.txt and relations.txt as in SimKGC.
+    def count_lines(file_path):
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return len(f.readlines())
+
+    nentity = count_lines(os.path.join(data_dir, 'entities.txt'))
+    nrelation = count_lines(os.path.join(data_dir, 'relations.txt'))
+
+    train_triples = read_triples(os.path.join(data_dir, 'train.txt'))
+    valid_triples = read_triples(os.path.join(data_dir, 'valid.txt'))
+    test_triples = read_triples(os.path.join(data_dir, 'test.txt'))
+
+    # Convert to the format OGB loader uses (dictionary of numpy arrays)
+    def to_split_dict(triples_list):
+        heads = np.array([h for h, r, t in triples_list])
+        rels = np.array([r for h, r, t in triples_list])
+        tails = np.array([t for h, r, t in triples_list])
+        return {'head': heads, 'relation': rels, 'tail': tails}
+
+    split_dict = {
+        'train': to_split_dict(train_triples),
+        'valid': to_split_dict(valid_triples),
+        'test': to_split_dict(test_triples)
+    }
+
+    return split_dict, nentity, nrelation
+
 
 def set_logger(args):
-    '''
-    Write logs to checkpoint and console
-    '''
-
     if args.do_train:
         log_file = os.path.join(args.save_path or args.init_checkpoint, 'train.log')
     else:
         log_file = os.path.join(args.save_path or args.init_checkpoint, 'test.log')
-
-    print(log_file)
     logging.basicConfig(
         format='%(asctime)s %(levelname)-8s %(message)s',
         level=logging.INFO,
@@ -136,7 +165,6 @@ def set_logger(args):
         filename=log_file,
         filemode='w'
     )
-
     if args.print_on_screen:
         console = logging.StreamHandler()
         console.setLevel(logging.INFO)
@@ -145,12 +173,9 @@ def set_logger(args):
         logging.getLogger('').addHandler(console)
 
 def log_metrics(mode, step, metrics, writer):
-    '''
-    Print the evaluation logs
-    '''
     for metric in metrics:
         logging.info('%s %s at step %d: %f' % (mode, metric, step, metrics[metric]))
-        writer.add_scalar("_".join([mode, metric]), metrics[metric], step)
+        writer.add_scalar("_" .join([mode, metric]), metrics[metric], step)
 
 
 def main(args):
@@ -162,29 +187,32 @@ def main(args):
 
     args.save_path = 'log/%s/%s/%s-%s/%s'%(args.dataset, args.model, args.hidden_dim, args.gamma, time.time()) if args.save_path == None else args.save_path
     writer = SummaryWriter(args.save_path)
-
-    # Write logs to checkpoint and console
     set_logger(args)
 
     # Load relation types based on dataset
-    relation_type_file = f'relation_types_{args.dataset}.json' if args.dataset == 'WN18RR' else 'relation_types.json'
-    relation_type_path = os.path.join(os.path.dirname(__file__), '..', relation_type_file)
-    logging.info(f"Loading relation types from {relation_type_path}...")
-    with open(relation_type_path, 'r') as f:
-        relation_types = json.load(f)
-    high_frequency_relations = relation_types['high_frequency_relations']
-    low_frequency_relations = relation_types['low_frequency_relations']
-    logging.info(f"Loaded {len(high_frequency_relations)} high-frequency relations for {args.dataset}.")
-    logging.info(f"Loaded {len(low_frequency_relations)} low-frequency relations for {args.dataset}.")
+    if args.dataset in ['FB15k237', 'WN18RR']:
+        relation_type_file = f'relation_types_{args.dataset}.json' if args.dataset == 'WN18RR' else 'relation_types.json'
+        relation_type_path = os.path.join(os.path.dirname(__file__), '..', relation_type_file)
+        logging.info(f"Loading relation types from {relation_type_path}...")
+        with open(relation_type_path, 'r') as f:
+            relation_types = json.load(f)
+        high_frequency_relations = relation_types['high_frequency_relations']
+        low_frequency_relations = relation_types['low_frequency_relations']
+        logging.info(f"Loaded {len(high_frequency_relations)} high-frequency relations for {args.dataset}.")
+        logging.info(f"Loaded {len(low_frequency_relations)} low-frequency relations for {args.dataset}.")
+    else:
+        high_frequency_relations, low_frequency_relations = [], [] # Not used for OGB datasets
 
-
-    dataset = LinkPropPredDataset(name = args.dataset)
-
-    split_dict = dataset.get_edge_split()
-    nentity = dataset.graph['num_nodes']
-    nrelation = int(max(dataset.graph['edge_reltype'])[0])+1
-
-    evaluator = Evaluator(name = args.dataset)
+    # Load data
+    if args.dataset in ['FB15k237', 'WN18RR']:
+        split_dict, nentity, nrelation = load_legacy_dataset(args.dataset)
+        evaluator = None # We will use our own evaluator logic for legacy datasets
+    else:
+        dataset = LinkPropPredDataset(name = args.dataset)
+        split_dict = dataset.get_edge_split()
+        nentity = dataset.graph['num_nodes']
+        nrelation = int(max(dataset.graph['edge_reltype'])[0])+1
+        evaluator = Evaluator(name = args.dataset)
 
     args.nentity = nentity
     args.nrelation = nrelation
@@ -200,66 +228,6 @@ def main(args):
     logging.info('#valid: %d' % len(valid_triples['head']))
     test_triples = split_dict['test']
     logging.info('#test: %d' % len(test_triples['head']))
-    logging.info('relation type %s' % args.relation_type)
-    print('relation type %s' % args.relation_type)
-    test_set_file = ''
-    if args.relation_type == '1-1':
-        test_set_file = './dataset/ogbl_wikikg/wikikg_P/1-1-id.txt'
-        test_set_pre_processed = './dataset/ogbl_wikikg/wikikg_P/1-1.pt'
-    elif args.relation_type == '1-n':
-        test_set_file = './dataset/ogbl_wikikg/wikikg_P/1-n-id.txt'
-        test_set_pre_processed = './dataset/ogbl_wikikg/wikikg_P/1-n.pt'
-    elif args.relation_type == 'n-1':
-        test_set_file = './dataset/ogbl_wikikg/wikikg_P/n-1-id.txt'
-        test_set_pre_processed = './dataset/ogbl_wikikg/wikikg_P/n-1.pt'
-    elif args.relation_type == 'n-n':
-        test_set_file = './dataset/ogbl_wikikg/wikikg_P/n-n-id.txt'
-        test_set_pre_processed = './dataset/ogbl_wikikg/wikikg_P/n-n.pt'
-
-    if test_set_file != '':
-        if osp.exists(test_set_pre_processed):
-            test_triples = torch.load(test_set_pre_processed, 'rb')
-            print("load pre processed test set")
-        else:
-            test_triples_new = {}
-            test_triples_chosen = []
-            test_triples_new['head'] = []
-            test_triples_new['relation'] = []
-            test_triples_new['tail'] = []
-            test_triples_new['head_neg'] = []
-            test_triples_new['tail_neg'] = []
-            f_test = open(test_set_file, "r")
-            for line in f_test:
-                h, r, t = line.strip().split('\t')
-                h, r, t = int(h), int(r), int(t)
-                test_triples_chosen.append((h, r, t))
-            f_test.close()
-
-            for idx in range(len(test_triples['head'])):
-                h, r, t = test_triples['head'][idx], test_triples['relation'][idx], test_triples['tail'][idx]
-                if (h, r, t) in test_triples_chosen:
-                    test_triples_new['head'].append(h)
-                    test_triples_new['relation'].append(r)
-                    test_triples_new['tail'].append(t)
-                    test_triples_new['head_neg'].append(test_triples['head_neg'][idx])
-                    test_triples_new['tail_neg'].append(test_triples['tail_neg'][idx])
-            print('Saving ...')
-            torch.save(test_triples_new, test_set_pre_processed, pickle_protocol=4)
-
-            test_triples = test_triples_new
-            logging.info('#test: %d' % len(test_triples['head']))
-
-
-    train_count, train_true_head, train_true_tail = defaultdict(lambda: 4), defaultdict(list), defaultdict(list)
-    f_train = open("train.txt", "w")
-    for i in tqdm(range(len(train_triples['head']))):
-        head, relation, tail = train_triples['head'][i], train_triples['relation'][i], train_triples['tail'][i]
-        train_count[(head, relation)] += 1
-        train_count[(tail, -relation-1)] += 1
-        train_true_head[(relation, tail)].append(head)
-        train_true_tail[(head, relation)].append(tail)
-        f_train.write("\t".join([str(head), str(relation), str(tail)]) + '\n')
-    f_train.close()
 
     kge_model = KGEModel(
         model_name=args.model,
@@ -271,7 +239,7 @@ def main(args):
         double_relation_embedding=args.double_relation_embedding,
         triple_relation_embedding=args.triple_relation_embedding,
         quad_relation_embedding=args.quad_relation_embedding,
-        evaluator=evaluator
+        evaluator=evaluator # This will be None for legacy datasets
     )
 
     logging.info('Model Parameter Configuration:')
@@ -282,7 +250,12 @@ def main(args):
         kge_model = kge_model.cuda()
 
     if args.do_train:
-        # Set training dataloader iterator
+        train_count, train_true_head, train_true_tail = defaultdict(lambda: 4), defaultdict(list), defaultdict(list)
+        for i in tqdm(range(len(train_triples['head']))):
+            head, relation, tail = train_triples['head'][i], train_triples['relation'][i], train_triples['tail'][i]
+            train_true_head[(relation, tail)].append(head)
+            train_true_tail[(head, relation)].append(tail)
+
         train_dataloader_head = DataLoader(
             TrainDataset(train_triples, nentity, nrelation,
                 args.negative_sample_size, 'head-batch',
@@ -292,7 +265,6 @@ def main(args):
             num_workers=max(1, args.cpu_num//2),
             collate_fn=TrainDataset.collate_fn
         )
-
         train_dataloader_tail = DataLoader(
             TrainDataset(train_triples, nentity, nrelation,
                 args.negative_sample_size, 'tail-batch',
@@ -302,10 +274,7 @@ def main(args):
             num_workers=max(1, args.cpu_num//2),
             collate_fn=TrainDataset.collate_fn
         )
-
         train_iterator = BidirectionalOneShotIterator(train_dataloader_head, train_dataloader_tail)
-
-        # Set training configuration
         current_learning_rate = args.learning_rate
         optimizer = torch.optim.Adam(
             filter(lambda p: p.requires_grad, kge_model.parameters()),
@@ -317,7 +286,6 @@ def main(args):
             warm_up_steps = args.max_steps // 2
 
     if args.init_checkpoint:
-        # Restore model from checkpoint directory
         logging.info('Loading checkpoint %s...' % args.init_checkpoint)
         checkpoint = torch.load(os.path.join(args.init_checkpoint, 'checkpoint'))
         init_step = checkpoint['step']
@@ -331,31 +299,13 @@ def main(args):
         init_step = 0
 
     step = init_step
-
-    logging.info('Start Training...')
-    logging.info('init_step = %d' % init_step)
-    logging.info('negative_sample_size = %d' % args.negative_sample_size)
-    logging.info('batch_size = %d' % args.batch_size)
-    logging.info('hidden_dim = %d' % args.hidden_dim)
-    logging.info('gamma = %f' % args.gamma)
-    logging.info('negative_adversarial_sampling = %s' % str(args.negative_adversarial_sampling))
-    logging.info('learning_rate = %f' % args.learning_rate)
-    if args.negative_adversarial_sampling:
-        logging.info('adversarial_temperature = %f' % args.adversarial_temperature)
-
-    # Set valid dataloader as it would be evaluated during training
-
     if args.do_train:
-        logging.info('learning_rate = %d' % current_learning_rate)
-
+        logging.info('Start Training...')
+        logging.info('init_step = %d' % init_step)
         training_logs = []
-
-        #Training Loop
         for step in range(init_step, args.max_steps):
-
             log = kge_model.train_step(kge_model, optimizer, train_iterator, args)
             training_logs.append(log)
-
             if step >= warm_up_steps:
                 current_learning_rate = current_learning_rate / 10
                 logging.info('Change learning_rate to %f at step %d' % (current_learning_rate, step))
@@ -364,27 +314,23 @@ def main(args):
                     lr=current_learning_rate
                 )
                 warm_up_steps = warm_up_steps * 3
-
-            if step % args.save_checkpoint_steps == 0 and step > 0: # ~ 41 seconds/saving
+            if step % args.save_checkpoint_steps == 0 and step > 0:
                 save_variable_list = {
                     'step': step,
                     'current_learning_rate': current_learning_rate,
                     'warm_up_steps': warm_up_steps
                 }
                 save_model(kge_model, optimizer, save_variable_list, args)
-
             if step % args.log_steps == 0:
                 metrics = {}
                 for metric in training_logs[0].keys():
                     metrics[metric] = sum([log[metric] for log in training_logs])/len(training_logs)
                 log_metrics('Train', step, metrics, writer)
                 training_logs = []
-
             if args.do_valid and step % args.valid_steps == 0 and step > 0:
                 logging.info('Evaluating on Valid Dataset...')
-                metrics = kge_model.test_step(kge_model, valid_triples, args)
+                metrics = kge_model.test_step(kge_model, valid_triples, args, high_frequency_relations, low_frequency_relations)
                 log_metrics('Valid', step, metrics, writer)
-
         save_variable_list = {
             'step': step,
             'current_learning_rate': current_learning_rate,
@@ -401,15 +347,6 @@ def main(args):
         logging.info('Evaluating on Test Dataset...')
         metrics = kge_model.test_step(kge_model, test_triples, args, high_frequency_relations, low_frequency_relations)
         log_metrics('Test', step, metrics, writer)
-        print(metrics)
-    if args.evaluate_train:
-        logging.info('Evaluating on Training Dataset...')
-        small_train_triples = {}
-        indices = np.random.choice(len(train_triples['head']), args.ntriples_eval_train, replace=False)
-        for i in train_triples:
-            small_train_triples[i] = train_triples[i][indices]
-        metrics = kge_model.test_step(kge_model, small_train_triples, args, high_frequency_relations, low_frequency_relations, random_sampling=True)
-        log_metrics('Train', step, metrics, writer)
 
 if __name__ == '__main__':
     main(parse_args())

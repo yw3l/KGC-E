@@ -358,7 +358,19 @@ class KGEModel(nn.Module):
                         ensembled_score = beta * score_compounde + (1 - beta) * score_simkgc
                     # --- End of RTAME Ensembling Logic ---
 
-                    batch_results = model.evaluator.eval({'y_pred_pos': ensembled_score[:, 0], 'y_pred_neg': ensembled_score[:, 1:]})
+                    if model.evaluator is not None: # OGB Evaluator
+                        batch_results = model.evaluator.eval({'y_pred_pos': ensembled_score[:, 0], 'y_pred_neg': ensembled_score[:, 1:]})
+                    else: # Manual evaluation for legacy datasets
+                        # Sort scores and get ranks
+                        sorted_scores, sorted_indices = torch.sort(ensembled_score, dim=1, descending=True)
+                        # The rank of the positive sample is where its original index (0) appears in the sorted list
+                        ranks = (sorted_indices == 0).nonzero(as_tuple=True)[1] + 1
+                        
+                        batch_results = {}
+                        batch_results['mrr'] = (1.0 / ranks).cpu()
+                        for k in [1, 3, 10]:
+                            batch_results[f'hits@{k}'] = (ranks <= k).float().cpu()
+
                     for metric in batch_results:
                         test_logs[metric].append(batch_results[metric])
 

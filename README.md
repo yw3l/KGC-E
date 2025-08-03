@@ -32,37 +32,35 @@ KGC-E/
 
 进入 `CompoundE` 目录 (`cd CompoundE`)。以下是针对不同数据集的训练命令示例。训练完成后，检查点将保存在 `log/[DATASET_NAME]/...` 目录下。
 
-- **为 FB15k-237 训练 CompoundE**:
+*   **为 FB15k-237 训练 CompoundE**:
+    ```bash
+    python run.py --dataset FB15k237 --model CompoundE --do_train --do_valid --cuda \
+    -n 256 -b 1024 -d 200 -g 24.0 -a 1.0 -adv -lr 0.0001 --max_steps 150000 \
+    --save_checkpoint_steps 15000 --valid_steps 15000 --test_batch_size 16
+    ```
 
-  ```bash
-  python run.py --dataset FB15k237 --model CompoundE --do_train --do_valid --cuda \
-  -n 256 -b 1024 -d 200 -g 24.0 -a 1.0 -adv -lr 0.0001 --max_steps 150000 \
-  --save_checkpoint_steps 15000 --valid_steps 15000 --test_batch_size 16
-  ```
-
-- **为 WN18RR 训练 CompoundE**:
-  ```bash
-  python run.py --dataset WN18RR --model CompoundE --do_train --do_valid --cuda \
-  -n 256 -b 512 -d 200 -g 24.0 -a 1.0 -adv -lr 0.0001 --max_steps 100000 \
-  --save_checkpoint_steps 10000 --valid_steps 10000 --test_batch_size 16
-  ```
+*   **为 WN18RR 训练 CompoundE**:
+    ```bash
+    python run.py --dataset WN18RR --model CompoundE --do_train --do_valid --cuda \
+    -n 256 -b 512 -d 200 -g 24.0 -a 1.0 -adv -lr 0.0001 --max_steps 100000 \
+    --save_checkpoint_steps 10000 --valid_steps 10000 --test_batch_size 16
+    ```
 
 **2. 训练 SimKGC**
 
 进入 `SimKGC` 目录 (`cd SimKGC`)。以下是针对不同数据集的训练命令示例。训练完成后，检查点将保存在 `checkpoint/[DATASET_NAME]/...` 目录下。
 
-- **为 FB15k-237 训练 SimKGC**:
+*   **为 FB15k-237 训练 SimKGC**:
+    ```bash
+    python main.py --dataset FB15k237 --model_name bert-base-uncased --batch_size 128 --max_epoch 10 \
+    --learning_rate 2e-5 --gpus 0,1 --max_num_mentions 30 --use_link_graph
+    ```
 
-  ```bash
-  python main.py --dataset FB15k237 --model_name bert-base-uncased --batch_size 128 --max_epoch 10 \
-  --learning_rate 2e-5 --gpus 0,1 --max_num_mentions 30 --use_link_graph
-  ```
-
-- **为 WN18RR 训练 SimKGC**:
-  ```bash
-  python main.py --dataset WN18RR --model_name bert-base-uncased --batch_size 128 --max_epoch 20 \
-  --learning_rate 2e-5 --gpus 0,1 --max_num_mentions 30 --use_link_graph
-  ```
+*   **为 WN18RR 训练 SimKGC**:
+    ```bash
+    python main.py --dataset WN18RR --model_name bert-base-uncased --batch_size 128 --max_epoch 20 \
+    --learning_rate 2e-5 --gpus 0,1 --max_num_mentions 30 --use_link_graph
+    ```
 
 > **注意**: 以上命令中的超参数（如 `batch_size`, `learning_rate` 等）是常用的参考值。为了达到最佳性能，您可能需要根据自己的硬件环境和原始论文的建议进行微调。
 
@@ -77,16 +75,15 @@ KGC-E/
     python generate_simkgc_scores.py --dataset [DATASET_NAME] --checkpoint [CHECKPOINT_PATH]
     ```
 
-    - **FB15k-237 示例**:
+    *   **FB15k-237 示例**:
+        ```bash
+        python generate_simkgc_scores.py --dataset FB15k237 --checkpoint checkpoint/FB15k237/SimKGC_FB15k237_bert-base-uncased/checkpoint_best.pt
+        ```
 
-      ```bash
-      python generate_simkgc_scores.py --dataset FB15k237 --checkpoint checkpoint/FB15k237/SimKGC_FB15k237_bert-base-uncased/checkpoint_best.pt
-      ```
-
-    - **WN18RR 示例**:
-      ```bash
-      python generate_simkgc_scores.py --dataset WN18RR --checkpoint checkpoint/WN18RR/SimKGC_WN18RR_bert-base-uncased/checkpoint_best.pt
-      ```
+    *   **WN18RR 示例**:
+        ```bash
+        python generate_simkgc_scores.py --dataset WN18RR --checkpoint checkpoint/WN18RR/SimKGC_WN18RR_bert-base-uncased/checkpoint_best.pt
+        ```
 
 3.  **检查产出**: 脚本执行完毕后，会在 `SimKGC/predictions/[DATASET_NAME]/` 目录下生成一个名为 `simkgc_scores.pt` 的文件。
 
@@ -101,16 +98,15 @@ KGC-E/
     python run.py --dataset [DATASET_NAME] --do_test --cuda --init_checkpoint [CHECKPOINT_DIR]
     ```
 
-    - **FB15k-237 示例**:
+    *   **FB15k-237 示例**:
+        ```bash
+        python run.py --dataset FB15k237 --do_test --cuda --init_checkpoint log/FB15k237/CompoundE/...
+        ```
 
-      ```bash
-      python run.py --dataset FB15k237 --do_test --cuda --init_checkpoint log/FB15k237/CompoundE/...
-      ```
-
-    - **WN18RR 示例**:
-      ```bash
-      python run.py --dataset WN18RR --do_test --cuda --init_checkpoint log/WN18RR/CompoundE/...
-      ```
+    *   **WN18RR 示例**:
+        ```bash
+        python run.py --dataset WN18RR --do_test --cuda --init_checkpoint log/WN18RR/CompoundE/...
+        ```
 
 ### 第四步：查看结果
 
@@ -126,5 +122,5 @@ KGC-E/
 
 如果您希望进一步优化性能，可以调整以下超参数：
 
-- **关系划分**: 修改 `relation_types.json` (FB15k237) 或 `relation_types_wn18rr.json` (WN18RR) 文件来调整高/低频关系的划分。
-- **集成权重**: 在 `CompoundE/model.py` 的 `test_step` 函数中，直接修改 `alpha` 和 `beta` 的值。
+*   **关系划分**: 修改 `relation_types.json` (FB15k237) 或 `relation_types_wn18rr.json` (WN18RR) 文件来调整高/低频关系的划分。
+*   **集成权重**: 在 `CompoundE/model.py` 的 `test_step` 函数中，直接修改 `alpha` 和 `beta` 的值。
