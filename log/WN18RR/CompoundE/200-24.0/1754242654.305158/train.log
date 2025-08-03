@@ -1,0 +1,16 @@
+2025-08-04 01:37:34 INFO     Loading relation types from D:\Dev Environment\PycharmProjects\KGC-E\CompoundE\..\relation_types_wn18rr.json...
+2025-08-04 01:37:34 INFO     Loaded 5 high-frequency relations for WN18RR.
+2025-08-04 01:37:34 INFO     Loaded 6 low-frequency relations for WN18RR.
+2025-08-04 01:37:34 INFO     Loading legacy dataset: WN18RR
+2025-08-04 01:37:34 INFO     Model: CompoundE
+2025-08-04 01:37:34 INFO     Dataset: WN18RR
+2025-08-04 01:37:34 INFO     #entity: 40943
+2025-08-04 01:37:34 INFO     #relation: 11
+2025-08-04 01:37:34 INFO     #train: 86835
+2025-08-04 01:37:34 INFO     #valid: 3034
+2025-08-04 01:37:34 INFO     #test: 3134
+2025-08-04 01:37:34 INFO     Model Parameter Configuration:
+2025-08-04 01:37:34 INFO     Parameter gamma: torch.Size([1]), require_grad = False
+2025-08-04 01:37:34 INFO     Parameter embedding_range: torch.Size([1]), require_grad = False
+2025-08-04 01:37:34 INFO     Parameter entity_embedding: torch.Size([40943, 200]), require_grad = True
+2025-08-04 01:37:34 INFO     Parameter relation_embedding: torch.Size([11, 600]), require_grad = True

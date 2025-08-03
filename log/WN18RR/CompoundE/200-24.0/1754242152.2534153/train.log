@@ -1,0 +1,4 @@
+2025-08-04 01:29:12 INFO     Loading relation types from D:\Dev Environment\PycharmProjects\KGC-E\CompoundE\..\relation_types_wn18rr.json...
+2025-08-04 01:29:12 INFO     Loaded 5 high-frequency relations for WN18RR.
+2025-08-04 01:29:12 INFO     Loaded 6 low-frequency relations for WN18RR.
+2025-08-04 01:29:12 INFO     Loading legacy dataset: WN18RR

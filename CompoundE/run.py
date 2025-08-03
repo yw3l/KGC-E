@@ -110,18 +110,30 @@ def save_model(model, optimizer, save_variable_list, args):
     np.save(os.path.join(args.save_path, 'relation_embedding'), relation_embedding)
 
 
-def read_triples(file_path):
+def read_triples(file_path, entity_to_id, relation_to_id):
     triples = []
     with open(file_path, 'r', encoding='utf-8') as f:
         for line in f:
             h, r, t = line.strip().split('\t')
-            triples.append((int(h), int(r), int(t)))
+            triples.append((entity_to_id[h], relation_to_id[r], entity_to_id[t]))
     return triples
 
 def load_legacy_dataset(dataset_name):
     """Loads FB15k-237 and WN18RR datasets with robust file checking."""
     logging.info(f"Loading legacy dataset: {dataset_name}")
     data_dir = f'../SimKGC/data/{dataset_name}'
+
+    def load_dict(file_path):
+        """Loads a dictionary from a file, mapping names to IDs."""
+        mapping = {}
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                id_str, name = line.strip().split('\t')
+                mapping[name] = int(id_str)
+        return mapping
+
+    entity_to_id = load_dict(os.path.join(data_dir, 'entities.dict'))
+    relation_to_id = load_dict(os.path.join(data_dir, 'relations.dict'))
 
     def get_count(name):
         """Smartly gets entity or relation count from either .json or .txt files."""
@@ -141,12 +153,12 @@ def load_legacy_dataset(dataset_name):
                 f"Please ensure data is in place or run SimKGC's preprocess.sh script."
             )
 
-    nentity = get_count('entities') if dataset_name == 'FB15k237' else get_count('entity')
-    nrelation = get_count('relations') if dataset_name == 'FB15k237' else get_count('relation')
+    nentity = len(entity_to_id)
+    nrelation = len(relation_to_id)
 
-    train_triples = read_triples(os.path.join(data_dir, 'train.txt'))
-    valid_triples = read_triples(os.path.join(data_dir, 'valid.txt'))
-    test_triples = read_triples(os.path.join(data_dir, 'test.txt'))
+    train_triples = read_triples(os.path.join(data_dir, 'train.txt'), entity_to_id, relation_to_id)
+    valid_triples = read_triples(os.path.join(data_dir, 'valid.txt'), entity_to_id, relation_to_id)
+    test_triples = read_triples(os.path.join(data_dir, 'test.txt'), entity_to_id, relation_to_id)
 
     def to_split_dict(triples_list):
         heads = np.array([h for h, r, t in triples_list], dtype=np.int64)
@@ -186,6 +198,10 @@ def log_metrics(mode, step, metrics, writer):
     for metric in metrics:
         logging.info('%s %s at step %d: %f' % (mode, metric, step, metrics[metric]))
         writer.add_scalar("_" .join([mode, metric]), metrics[metric], step)
+
+
+def return_four():
+    return 4
 
 
 def main(args):
@@ -266,7 +282,7 @@ def main(args):
         kge_model = kge_model.cuda()
 
     if args.do_train:
-        train_count, train_true_head, train_true_tail = defaultdict(lambda: 4), defaultdict(list), defaultdict(list)
+        train_count, train_true_head, train_true_tail = defaultdict(return_four), defaultdict(list), defaultdict(list)
         for i in tqdm(range(len(train_triples['head']))):
             head, relation, tail = train_triples['head'][i], train_triples['relation'][i], train_triples['tail'][i]
             train_true_head[(relation, tail)].append(head)
