@@ -200,8 +200,14 @@ def main(args):
     set_logger(args)
 
     # Load relation types based on dataset
-    if args.dataset in ['FB15k237', 'WN18RR']:
-        relation_type_file = f'relation_types_{args.dataset}.json' if args.dataset == 'WN18RR' else 'relation_types.json'
+    if args.dataset == 'FB15k237':
+        relation_type_file = 'relation_types.json'
+    elif args.dataset == 'WN18RR':
+        relation_type_file = 'relation_types_wn18rr.json'
+    else:
+        relation_type_file = None
+
+    if relation_type_file:
         relation_type_path = os.path.join(os.path.dirname(__file__), '..', relation_type_file)
         logging.info(f"Loading relation types from {relation_type_path}...")
         with open(relation_type_path, 'r') as f:
