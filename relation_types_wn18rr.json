@@ -1,0 +1,17 @@
+{
+    "high_frequency_relations": [
+        "_hypernym",
+        "_derivationally_related_form",
+        "_member_meronym",
+        "_has_part",
+        "_synset_domain_topic_of"
+    ],
+    "low_frequency_relations": [
+        "_instance_hypernym",
+        "_also_see",
+        "_verb_group",
+        "_member_of_domain_region",
+        "_member_of_domain_usage",
+        "_similar_to"
+    ]
+}

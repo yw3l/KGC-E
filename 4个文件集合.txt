@@ -1,0 +1,763 @@
+ 
+Datasets	WN18RR	FB15k-237
+Entities	40,943	14,541
+Relations	11	237
+Triples	93,021	310,116
+Training	86,835	272,115
+Validation	3,043	17,535
+Test	3,143	20,466
+Ave. Deg.	Out:2.29, In:2.81, Undirected: 4.54	Out: 22.32, In: 22.96, Undirected: 42.65
+Scale	Small	Medium
+ 
+==================== Analyzing WN18RR ====================
+Max degree: 521
+Number of isolated nodes: 0
+Relation Patterns:
+_instance_hypernym: N-N (Avg head: 1.20, Avg tail: 7.52)
+_member_of_domain_region: N-N (Avg head: 8.33, Avg tail: 1.06)
+_hypernym: N-N (Avg head: 1.02, Avg tail: 3.80)
+_member_meronym: N-N (Avg head: 2.45, Avg tail: 1.01)
+_verb_group: N-N (Avg head: 1.18, Avg tail: 1.18)
+_also_see: N-N (Avg head: 1.92, Avg tail: 1.69)
+_derivationally_related_form: N-N (Avg head: 1.90, Avg tail: 1.90)
+_member_of_domain_usage: N-N (Avg head: 27.00, Avg tail: 1.06)
+_has_part: N-N (Avg head: 2.49, Avg tail: 1.22)
+_similar_to: N-N (Avg head: 1.05, Avg tail: 1.05)
+_synset_domain_topic_of: N-N (Avg head: 1.05, Avg tail: 10.65)
+==================== Analyzing FB15k-237 ====================
+Max degree: 8642
+Number of isolated nodes: 0
+Symmetric Relations (>90%):
+
+Relation Patterns:
+/film/film/dubbing_performances./film/dubbing_performance/actor: N-N (Avg head: 4.27, Avg tail: 1.91)
+/base/saturdaynightlive/snl_cast_member/seasons./base/saturdaynightlive/snl_season_tenure/cast_members: N-N (Avg head: 8.67, Avg tail: 8.67)
+/celebrities/celebrity/celebrity_friends./celebrities/friendship/friend: N-N (Avg head: 1.63, Avg tail: 1.65)
+/music/performance_role/regular_performances./music/group_membership/role: N-N (Avg head: 22.59, Avg tail: 22.40)
+/government/politician/government_positions_held./government/government_position_held/jurisdiction_of_office: N-N (Avg head: 1.48, Avg tail: 2.24)
+/education/field_of_study/students_majoring./education/education/major_field_of_study: N-N (Avg head: 3.97, Avg tail: 4.06)
+/education/educational_institution/students_graduates./education/education/student: N-N (Avg head: 5.98, Avg tail: 1.44)
+/tv/tv_program/genre: N-N (Avg head: 3.89, Avg tail: 13.92)
+/education/university/local_tuition./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 60.17)
+/film/director/film: N-N (Avg head: 3.22, Avg tail: 1.04)
+/time/event/instance_of_recurring_event: 1-N (Avg head: 1.00, Avg tail: 14.89)
+/film/film/production_companies: N-N (Avg head: 1.47, Avg tail: 20.64)
+/music/artist/track_contributions./music/track_contribution/role: N-N (Avg head: 4.25, Avg tail: 18.72)
+/award/award_nominated_work/award_nominations./award/award_nomination/nominated_for: N-N (Avg head: 2.91, Avg tail: 2.92)
+/people/deceased_person/place_of_death: 1-N (Avg head: 1.00, Avg tail: 4.01)
+/olympics/olympic_games/sports: N-N (Avg head: 15.93, Avg tail: 12.45)
+/location/location/adjoin_s./location/adjoining_relationship/adjoins: N-N (Avg head: 2.73, Avg tail: 2.77)
+/location/statistical_region/gdp_real./measurement_unit/adjusted_money_value/adjustment_currency: 1-N (Avg head: 1.00, Avg tail: 160.00)
+/film/film_set_designer/film_sets_designed: N-N (Avg head: 5.38, Avg tail: 1.23)
+/film/film_distributor/films_distributed./film/film_film_distributor_relationship/film: N-N (Avg head: 34.78, Avg tail: 1.61)
+/organization/organization/headquarters./location/mailing_address/country: N-N (Avg head: 1.01, Avg tail: 50.25)
+/film/film/film_festivals: N-N (Avg head: 1.19, Avg tail: 14.19)
+/award/award_winning_work/awards_won./award/award_honor/honored_for: N-N (Avg head: 2.95, Avg tail: 2.93)
+/people/deceased_person/place_of_burial: N-N (Avg head: 1.07, Avg tail: 5.35)
+/sports/sports_league_draft/picks./sports/sports_league_draft_pick/school: N-N (Avg head: 16.85, Avg tail: 2.74)
+/education/field_of_study/students_majoring./education/education/student: N-N (Avg head: 4.91, Avg tail: 1.25)
+/people/ethnicity/languages_spoken: N-N (Avg head: 3.23, Avg tail: 4.10)
+/common/topic/webpage./common/webpage/category: 1-N (Avg head: 1.00, Avg tail: 4364.00)
+/film/film/music: N-N (Avg head: 1.09, Avg tail: 5.51)
+/broadcast/content/artist: N-N (Avg head: 21.17, Avg tail: 1.32)
+/user/jg/default_domain/olympic_games/sports: N-N (Avg head: 14.97, Avg tail: 11.75)
+/location/statistical_region/places_exported_to./location/imports_and_exports/exported_to: N-N (Avg head: 3.26, Avg tail: 3.26)
+/people/person/sibling_s./people/sibling_relationship/sibling: N-N (Avg head: 1.20, Avg tail: 1.19)
+/base/biblioness/bibs_location/country: 1-N (Avg head: 1.00, Avg tail: 7.30)
+/medicine/symptom/symptom_of: N-N (Avg head: 8.57, Avg tail: 3.65)
+/award/award_nominee/award_nominations./award/award_nomination/award_nominee: N-N (Avg head: 7.01, Avg tail: 6.99)
+/award/award_category/winners./award/award_honor/ceremony: N-N (Avg head: 13.18, Avg tail: 24.57)
+/education/university/fraternities_and_sororities: N-N (Avg head: 1.22, Avg tail: 54.00)
+/education/educational_institution/campuses: 1-1 (Avg head: 1.00, Avg tail: 1.00)
+/olympics/olympic_participating_country/medals_won./olympics/olympic_medal_honor/olympics: N-N (Avg head: 9.13, Avg tail: 29.51)
+/music/genre/parent_genre: N-N (Avg head: 3.09, Avg tail: 4.98)
+/music/performance_role/guest_performances./music/recording_contribution/performance_role: N-N (Avg head: 6.24, Avg tail: 6.48)
+/user/tsegaran/random/taxonomy_subject/entry./user/tsegaran/random/taxonomy_entry/taxonomy: 1-N (Avg head: 1.00, Avg tail: 493.00)
+/sports/sports_team/roster./basketball/basketball_roster_position/position: N-N (Avg head: 3.68, Avg tail: 26.29)
+/business/business_operation/operating_income./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 99.50)
+/location/country/capital: N-N (Avg head: 1.16, Avg tail: 1.28)
+/film/film/story_by: N-N (Avg head: 1.20, Avg tail: 2.00)
+/people/person/religion: N-N (Avg head: 1.14, Avg tail: 29.71)
+/people/person/place_of_birth: 1-N (Avg head: 1.00, Avg tail: 3.84)
+/award/award_winning_work/awards_won./award/award_honor/award: N-N (Avg head: 3.42, Avg tail: 15.05)
+/film/actor/dubbing_performances./film/dubbing_performance/language: N-N (Avg head: 1.01, Avg tail: 46.33)
+/film/film/produced_by: N-N (Avg head: 1.43, Avg tail: 3.54)
+/tv/tv_producer/programs_produced./tv/tv_producer_term/producer_type: 1-N (Avg head: 1.00, Avg tail: 266.00)
+/education/educational_institution/colors: N-N (Avg head: 2.04, Avg tail: 48.24)
+/base/schemastaging/person_extra/net_worth./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 194.33)
+/sports/sports_position/players./american_football/football_historical_roster_position/position_s: N-N (Avg head: 5.67, Avg tail: 5.67)
+/base/marchmadness/ncaa_basketball_tournament/seeds./base/marchmadness/ncaa_tournament_seed/team: N-N (Avg head: 14.69, Avg tail: 19.36)
+/sports/sports_team/roster./american_football/football_historical_roster_position/position_s: N-N (Avg head: 7.03, Avg tail: 31.30)
+/business/business_operation/revenue./measurement_unit/dated_money_value/currency: N-N (Avg head: 1.00, Avg tail: 54.75)
+/government/government_office_category/officeholders./government/government_position_held/jurisdiction_of_office: N-N (Avg head: 40.70, Avg tail: 1.91)
+/location/hud_county_place/county: 1-N (Avg head: 1.00, Avg tail: 1.58)
+/film/film/other_crew./film/film_crew_gig/film_crew_role: N-N (Avg head: 5.00, Avg tail: 165.26)
+/soccer/football_team/current_roster./soccer/football_roster_position/position: N-N (Avg head: 3.07, Avg tail: 380.50)
+/music/instrument/instrumentalists: N-N (Avg head: 24.74, Avg tail: 3.52)
+/people/person/languages: N-N (Avg head: 1.37, Avg tail: 25.10)
+/education/educational_degree/people_with_this_degree./education/education/institution: N-N (Avg head: 111.52, Avg tail: 4.26)
+/tv/tv_program/program_creator: N-N (Avg head: 1.22, Avg tail: 1.38)
+/media_common/netflix_genre/titles: N-N (Avg head: 28.44, Avg tail: 1.81)
+/sports/sports_team/roster./baseball/baseball_roster_position/position: N-N (Avg head: 4.83, Avg tail: 13.79)
+/location/hud_county_place/place: 1-1 (Avg head: 1.00, Avg tail: 1.00)
+/organization/role/leaders./organization/leadership/organization: N-N (Avg head: 67.92, Avg tail: 1.04)
+/people/marriage_union_type/unions_of_this_type./people/marriage/location_of_ceremony: N-N (Avg head: 132.00, Avg tail: 1.02)
+/base/schemastaging/organization_extra/phone_number./base/schemastaging/phone_sandbox/contact_category: N-N (Avg head: 1.46, Avg tail: 59.67)
+/music/performance_role/track_performances./music/track_contribution/role: N-N (Avg head: 32.39, Avg tail: 32.12)
+/government/political_party/politicians_in_this_party./government/political_party_tenure/politician: N-N (Avg head: 5.12, Avg tail: 1.14)
+/government/legislative_session/members./government/government_position_held/legislative_sessions: N-N (Avg head: 14.45, Avg tail: 14.45)
+/influence/influence_node/peers./influence/peer_relationship/peers: N-N (Avg head: 1.39, Avg tail: 1.32)
+/film/person_or_entity_appearing_in_film/films./film/personal_film_appearance/type_of_appearance: 1-N (Avg head: 1.00, Avg tail: 45.00)
+/user/alexander/philosophy/philosopher/interests: N-N (Avg head: 2.93, Avg tail: 7.24)
+/sports/professional_sports_team/draft_picks./sports/sports_league_draft_pick/school: N-N (Avg head: 8.98, Avg tail: 4.18)
+/location/hud_foreclosure_area/estimated_number_of_mortgages./measurement_unit/dated_integer/source: 1-N (Avg head: 1.00, Avg tail: 966.00)
+/location/location/time_zones: N-N (Avg head: 1.02, Avg tail: 109.00)
+/award/award_winning_work/awards_won./award/award_honor/award_winner: N-N (Avg head: 2.67, Avg tail: 1.84)
+/award/award_ceremony/awards_presented./award/award_honor/award_winner: N-N (Avg head: 23.67, Avg tail: 2.05)
+/base/aareas/schema/administrative_area/administrative_parent: 1-N (Avg head: 1.00, Avg tail: 4.52)
+/film/film/executive_produced_by: N-N (Avg head: 1.42, Avg tail: 3.14)
+/business/business_operation/industry: N-N (Avg head: 1.54, Avg tail: 8.42)
+/location/statistical_region/gdp_nominal_per_capita./measurement_unit/dated_money_value/currency: N-N (Avg head: 1.01, Avg tail: 38.80)
+/military/military_combatant/military_conflicts./military/military_combatant_group/combatants: N-N (Avg head: 9.39, Avg tail: 8.95)
+/language/human_language/countries_spoken_in: N-N (Avg head: 6.42, Avg tail: 2.03)
+/sports/professional_sports_team/draft_picks./sports/sports_league_draft_pick/draft: N-N (Avg head: 5.62, Avg tail: 26.40)
+/award/award_winner/awards_won./award/award_honor/award_winner: N-N (Avg head: 5.27, Avg tail: 5.25)
+/location/country/form_of_government: N-N (Avg head: 1.92, Avg tail: 61.50)
+/olympics/olympic_participating_country/athletes./olympics/olympic_athlete_affiliation/olympics: N-N (Avg head: 3.91, Avg tail: 20.02)
+/tv/tv_program/tv_producer./tv/tv_producer_term/producer_type: 1-N (Avg head: 1.00, Avg tail: 147.00)
+/military/military_conflict/combatants./military/military_combatant_group/combatants: N-N (Avg head: 7.31, Avg tail: 3.71)
+/people/ethnicity/geographic_distribution: N-N (Avg head: 3.64, Avg tail: 1.80)
+/people/person/gender: 1-N (Avg head: 1.00, Avg tail: 2265.00)
+/base/x2010fifaworldcupsouthafrica/world_cup_squad/current_world_cup_squad./base/x2010fifaworldcupsouthafrica/current_world_cup_squad/current_club: N-N (Avg head: 10.13, Avg tail: 1.85)
+/education/educational_degree/people_with_this_degree./education/education/major_field_of_study: N-N (Avg head: 26.87, Avg tail: 5.15)
+/film/film/runtime./film/film_cut/film_release_region: N-N (Avg head: 1.41, Avg tail: 8.00)
+/base/eating/practicer_of_diet/diet: N-N (Avg head: 1.09, Avg tail: 82.50)
+/education/educational_institution_campus/educational_institution: 1-1 (Avg head: 1.00, Avg tail: 1.00)
+/music/group_member/membership./music/group_membership/role: N-N (Avg head: 2.74, Avg tail: 11.90)
+/film/film/distributors./film/film_film_distributor_relationship/film_distribution_medium: N-N (Avg head: 1.52, Avg tail: 57.33)
+/location/location/partially_contains: N-N (Avg head: 1.51, Avg tail: 3.76)
+/location/statistical_region/religions./location/religion_percentage/religion: N-N (Avg head: 6.42, Avg tail: 19.62)
+/music/instrument/family: N-N (Avg head: 1.30, Avg tail: 4.36)
+/film/film/country: N-N (Avg head: 1.52, Avg tail: 41.77)
+/film/film/estimated_budget./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 210.14)
+/sports/sport/pro_athletes./sports/pro_sports_played/athlete: N-N (Avg head: 14.91, Avg tail: 1.04)
+/location/location/contains: N-N (Avg head: 6.43, Avg tail: 1.94)
+/sports/sports_position/players./sports/sports_team_roster/position: N-N (Avg head: 4.31, Avg tail: 4.46)
+/sports/pro_athlete/teams./sports/sports_team_roster/team: N-N (Avg head: 6.28, Avg tail: 1.95)
+/base/schemastaging/organization_extra/phone_number./base/schemastaging/phone_sandbox/service_location: N-N (Avg head: 2.86, Avg tail: 3.91)
+/education/educational_degree/people_with_this_degree./education/education/student: N-N (Avg head: 16.10, Avg tail: 1.29)
+/location/administrative_division/first_level_division_of: 1-N (Avg head: 1.00, Avg tail: 7.42)
+/film/film/cinematography: N-N (Avg head: 1.02, Avg tail: 5.92)
+/film/film/film_format: N-N (Avg head: 1.02, Avg tail: 84.20)
+/film/film/featured_film_locations: N-N (Avg head: 1.50, Avg tail: 4.61)
+/base/aareas/schema/administrative_area/capital: N-N (Avg head: 1.01, Avg tail: 1.06)
+/education/educational_institution/school_type: N-N (Avg head: 1.42, Avg tail: 36.79)
+/music/artist/origin: N-N (Avg head: 1.12, Avg tail: 2.50)
+/base/popstra/celebrity/breakup./base/popstra/breakup/participant: N-N (Avg head: 1.25, Avg tail: 1.27)
+/film/film/release_date_s./film/film_regional_release_date/film_regional_debut_venue: N-N (Avg head: 1.45, Avg tail: 7.42)
+/film/film/genre: N-N (Avg head: 4.59, Avg tail: 70.32)
+/location/statistical_region/gni_per_capita_in_ppp_dollars./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 149.00)
+/award/award_category/category_of: 1-N (Avg head: 1.00, Avg tail: 6.96)
+/organization/non_profit_organization/registered_with./organization/non_profit_registration/registering_agency: 1-N (Avg head: 1.00, Avg tail: 162.00)
+/olympics/olympic_participating_country/medals_won./olympics/olympic_medal_honor/medal: N-N (Avg head: 2.35, Avg tail: 106.67)
+/sports/sports_team/colors: N-N (Avg head: 2.24, Avg tail: 41.65)
+/celebrities/celebrity/sexual_relationships./celebrities/romantic_relationship/celebrity: N-N (Avg head: 1.36, Avg tail: 1.36)
+/music/performance_role/regular_performances./music/group_membership/group: N-N (Avg head: 16.32, Avg tail: 8.51)
+/film/film/personal_appearances./film/personal_film_appearance/person: N-N (Avg head: 3.46, Avg tail: 1.26)
+/people/person/profession: N-N (Avg head: 3.05, Avg tail: 88.04)
+/tv/non_character_role/tv_regular_personal_appearances./tv/tv_regular_personal_appearance/person: N-N (Avg head: 14.86, Avg tail: 1.11)
+/film/actor/film./film/performance/special_performance_type: N-N (Avg head: 1.01, Avg tail: 40.80)
+/film/film/release_date_s./film/film_regional_release_date/film_release_distribution_medium: N-N (Avg head: 1.08, Avg tail: 349.80)
+/base/aareas/schema/administrative_area/administrative_area_type: 1-N (Avg head: 1.00, Avg tail: 191.00)
+/base/popstra/celebrity/dated./base/popstra/dated/participant: N-N (Avg head: 2.19, Avg tail: 2.20)
+/dataworld/gardening_hint/split_to: N-N (Avg head: 1.07, Avg tail: 1.09)
+/sports/sports_team/roster./american_football/football_roster_position/position: N-N (Avg head: 9.10, Avg tail: 35.88)
+/education/university/international_tuition./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 19.83)
+/award/award_category/winners./award/award_honor/award_winner: N-N (Avg head: 13.95, Avg tail: 2.41)
+/sports/sports_team_location/teams: N-N (Avg head: 1.42, Avg tail: 1.02)
+/soccer/football_player/current_team./sports/sports_team_roster/team: N-N (Avg head: 7.56, Avg tail: 2.02)
+/base/localfood/seasonal_month/produce_available./base/localfood/produce_availability/seasonal_months: N-N (Avg head: 9.50, Avg tail: 9.50)
+/award/hall_of_fame/inductees./award/hall_of_fame_induction/inductee: N-N (Avg head: 21.22, Avg tail: 1.04)
+/travel/travel_destination/climate./travel/travel_destination_monthly_climate/month: N-N (Avg head: 11.64, Avg tail: 54.33)
+/location/statistical_region/rent50_2./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 458.00)
+/organization/organization/child./organization/organization_relationship/child: N-N (Avg head: 2.69, Avg tail: 1.25)
+/film/film_subject/films: N-N (Avg head: 4.35, Avg tail: 1.25)
+/award/award_nominee/award_nominations./award/award_nomination/award: N-N (Avg head: 4.07, Avg tail: 34.61)
+/film/actor/film./film/performance/film: N-N (Avg head: 5.21, Avg tail: 6.16)
+/travel/travel_destination/how_to_get_here./travel/transportation/mode_of_transportation: N-N (Avg head: 2.56, Avg tail: 36.40)
+/music/artist/contribution./music/recording_contribution/performance_role: N-N (Avg head: 1.84, Avg tail: 5.36)
+/film/film/written_by: N-N (Avg head: 1.21, Avg tail: 2.39)
+/organization/organization/place_founded: N-N (Avg head: 1.08, Avg tail: 1.75)
+/base/biblioness/bibs_location/state: 1-N (Avg head: 1.00, Avg tail: 3.69)
+/sports/sports_position/players./sports/sports_team_roster/team: N-N (Avg head: 68.29, Avg tail: 3.66)
+/government/governmental_body/members./government/government_position_held/legislative_sessions: N-N (Avg head: 17.29, Avg tail: 2.09)
+/people/ethnicity/people: N-N (Avg head: 32.25, Avg tail: 1.31)
+/film/film/film_art_direction_by: N-N (Avg head: 1.19, Avg tail: 4.00)
+/organization/endowed_organization/endowment./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 76.67)
+/music/group_member/membership./music/group_membership/group: N-N (Avg head: 1.19, Avg tail: 2.36)
+/people/person/spouse_s./people/marriage/location_of_ceremony: N-N (Avg head: 1.08, Avg tail: 2.38)
+/film/film/distributors./film/film_film_distributor_relationship/region: N-N (Avg head: 1.18, Avg tail: 7.74)
+/base/popstra/location/vacationers./base/popstra/vacation_choice/vacationer: N-N (Avg head: 3.30, Avg tail: 2.32)
+/base/schemastaging/organization_extra/phone_number./base/schemastaging/phone_sandbox/service_language: N-N (Avg head: 1.61, Avg tail: 10.61)
+/base/popstra/celebrity/friendship./base/popstra/friendship/participant: N-N (Avg head: 2.43, Avg tail: 2.41)
+/base/americancomedy/celebrity_impressionist/celebrities_impersonated: N-N (Avg head: 18.75, Avg tail: 1.15)
+/food/food/nutrients./food/nutrition_fact/nutrient: N-N (Avg head: 53.59, Avg tail: 16.84)
+/award/award_nominee/award_nominations./award/award_nomination/nominated_for: N-N (Avg head: 2.74, Avg tail: 3.98)
+/film/film/other_crew./film/film_crew_gig/crewmember: N-N (Avg head: 1.32, Avg tail: 9.12)
+/sports/sports_team/sport: 1-N (Avg head: 1.00, Avg tail: 58.11)
+/tv/tv_program/regular_cast./tv/regular_tv_appearance/actor: N-N (Avg head: 5.26, Avg tail: 1.47)
+/business/business_operation/assets./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 91.00)
+/tv/tv_writer/tv_programs./tv/tv_program_writer_relationship/tv_program: N-N (Avg head: 1.46, Avg tail: 3.21)
+/people/person/places_lived./people/place_lived/location: N-N (Avg head: 1.63, Avg tail: 5.16)
+/award/ranked_item/appears_in_ranked_lists./award/ranking/list: N-N (Avg head: 1.28, Avg tail: 60.86)
+/people/person/employment_history./business/employment_tenure/company: N-N (Avg head: 1.42, Avg tail: 1.80)
+/olympics/olympic_sport/athletes./olympics/olympic_athlete_affiliation/country: N-N (Avg head: 45.21, Avg tail: 12.55)
+/government/legislative_session/members./government/government_position_held/district_represented: N-N (Avg head: 22.20, Avg tail: 19.85)
+/film/film/release_date_s./film/film_regional_release_date/film_release_region: N-N (Avg head: 11.50, Avg tail: 86.49)
+/government/politician/government_positions_held./government/government_position_held/basic_title: N-N (Avg head: 1.68, Avg tail: 7.56)
+/medicine/disease/risk_factors: N-N (Avg head: 3.18, Avg tail: 3.46)
+/base/popstra/celebrity/canoodled./base/popstra/canoodled/participant: N-N (Avg head: 1.70, Avg tail: 1.68)
+/olympics/olympic_sport/athletes./olympics/olympic_athlete_affiliation/olympics: N-N (Avg head: 6.96, Avg tail: 9.68)
+/people/cause_of_death/people: N-N (Avg head: 12.79, Avg tail: 1.18)
+/medicine/disease/notable_people_with_this_condition: N-N (Avg head: 6.30, Avg tail: 1.08)
+/olympics/olympic_games/participating_countries: N-N (Avg head: 12.76, Avg tail: 2.88)
+/film/film/film_production_design_by: N-N (Avg head: 1.01, Avg tail: 5.69)
+/film/film/edited_by: N-N (Avg head: 1.07, Avg tail: 6.67)
+/people/person/spouse_s./people/marriage/type_of_union: N-N (Avg head: 1.07, Avg tail: 889.25)
+/people/person/nationality: N-N (Avg head: 1.15, Avg tail: 48.54)
+/award/award_ceremony/awards_presented./award/award_honor/honored_for: N-N (Avg head: 9.38, Avg tail: 1.77)
+/education/university/domestic_tuition./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 68.71)
+/location/country/second_level_divisions: N-1 (Avg head: 49.18, Avg tail: 1.00)
+/tv/tv_program/country_of_origin: N-N (Avg head: 1.08, Avg tail: 26.83)
+/film/film/prequel: N-N (Avg head: 1.08, Avg tail: 1.08)
+/award/award_category/disciplines_or_subjects: N-N (Avg head: 2.14, Avg tail: 6.00)
+/influence/influence_node/influenced_by: N-N (Avg head: 4.43, Avg tail: 5.03)
+/location/administrative_division/country: 1-N (Avg head: 1.00, Avg tail: 6.52)
+/user/ktrueman/default_domain/international_organization/member_states: N-N (Avg head: 54.50, Avg tail: 1.49)
+/baseball/baseball_team/team_stats./baseball/baseball_team_stats/season: N-N (Avg head: 9.26, Avg tail: 20.50)
+/base/locations/continents/countries_within: N-1 (Avg head: 33.50, Avg tail: 1.00)
+/location/statistical_region/gdp_nominal./measurement_unit/dated_money_value/currency: 1-N (Avg head: 1.00, Avg tail: 77.67)
+/people/profession/specialization_of: N-N (Avg head: 1.02, Avg tail: 3.57)
+/tv/tv_program/languages: N-N (Avg head: 1.08, Avg tail: 27.91)
+/film/film/language: N-N (Avg head: 1.67, Avg tail: 51.23)
+/business/job_title/people_with_this_title./business/employment_tenure/company: N-N (Avg head: 18.06, Avg tail: 2.36)
+/music/genre/artists: N-N (Avg head: 22.36, Avg tail: 6.50)
+/music/record_label/artist: N-N (Avg head: 18.79, Avg tail: 3.18)
+/film/special_film_performance_type/film_performance_type./film/performance/film: N-N (Avg head: 22.60, Avg tail: 1.03)
+/sports/sports_league/teams./sports/sports_league_participation/team: N-1 (Avg head: 23.88, Avg tail: 1.00)
+/soccer/football_team/current_roster./sports/sports_team_roster/position: N-N (Avg head: 3.06, Avg tail: 325.57)
+/american_football/football_team/current_roster./sports/sports_team_roster/position: N-N (Avg head: 8.83, Avg tail: 35.88)
+/olympics/olympic_games/medals_awarded./olympics/olympic_medal_honor/medal: N-N (Avg head: 3.00, Avg tail: 43.00)
+/organization/organization_founder/organizations_founded: N-N (Avg head: 1.34, Avg tail: 1.48)
+/base/culturalevent/event/entity_involved: N-N (Avg head: 4.72, Avg tail: 1.90)
+/tv/tv_network/programs./tv/tv_network_duration/program: N-N (Avg head: 6.28, Avg tail: 1.38)
+/people/person/spouse_s./people/marriage/spouse: N-N (Avg head: 1.08, Avg tail: 1.11)
+/location/us_county/county_seat: 1-N (Avg head: 1.00, Avg tail: 1.01)
+/base/petbreeds/city_with_dogs/top_breeds./base/petbreeds/dog_city_relationship/dog_breed: N-N (Avg head: 4.80, Avg tail: 47.00)
+/organization/organization/headquarters./location/mailing_address/state_province_region: N-N (Avg head: 1.02, Avg tail: 6.40)
+/location/capital_of_administrative_division/capital_of./location/administrative_division_capital_relationship/administrative_division: N-1 (Avg head: 1.09, Avg tail: 1.00)
+/award/award_category/nominees./award/award_nomination/nominated_for: N-N (Avg head: 45.93, Avg tail: 6.82)
+/tv/tv_producer/programs_produced./tv/tv_producer_term/program: N-N (Avg head: 1.64, Avg tail: 2.41)
+/tv/tv_personality/tv_regular_appearances./tv/tv_regular_personal_appearance/program: N-N (Avg head: 1.22, Avg tail: 4.39)
+/ice_hockey/hockey_team/current_roster./sports/sports_team_roster/position: N-N (Avg head: 2.72, Avg tail: 25.60)
+/organization/organization/headquarters./location/mailing_address/citytown: N-N (Avg head: 1.12, Avg tail: 2.53)
+/location/country/official_language: N-N (Avg head: 1.27, Avg tail: 5.64)
+/organization/organization_member/member_of./organization/organization_membership/organization: N-N (Avg head: 2.96, Avg tail: 40.71)
+/education/educational_institution/students_graduates./education/education/major_field_of_study: N-N (Avg head: 5.30, Avg tail: 25.35)
+/government/politician/government_positions_held./government/government_position_held/legislative_sessions: N-N (Avg head: 9.39, Avg tail: 5.26)
+/film/film/costume_design_by: N-N (Avg head: 1.01, Avg tail: 7.55)
+/time/event/locations: N-N (Avg head: 3.15, Avg tail: 2.27)
+
+
+
+ 
+想法：划分测试集。
+在 MRR 和 Hits@n 外，单独报告低度实体的指标（如 Hits@1 for entities with in-degree ≤3）。
+划分关系。
+ 
+==================== 开始分析 WN18RR ====================
+
+--- 正在分析 WN18RR 的关系模式 ---
+关系模式分布（基于严格的1/N定义）：
+N-N: 11
+
+按平均头/尾实体数量排序的Top关系（用于说明N-N、1-N、N-1）：
+  _member_of_domain_usage: 平均头实体数: 25.16, 平均尾实体数: 1.06
+  _member_of_domain_region: 平均头实体数: 8.10, 平均尾实体数: 1.06
+  _has_part: 平均头实体数: 2.43, 平均尾实体数: 1.21
+  _member_meronym: 平均头实体数: 2.39, 平均尾实体数: 1.01
+  _derivationally_related_form: 平均头实体数: 1.85, 平均尾实体数: 1.84
+  _also_see: 平均头实体数: 1.84, 平均尾实体数: 1.65
+  _instance_hypernym: 平均头实体数: 1.18, 平均尾实体数: 7.23
+  _verb_group: 平均头实体数: 1.16, 平均尾实体数: 1.16
+  _synset_domain_topic_of: 平均头实体数: 1.05, 平均尾实体数: 10.08
+  _similar_to: 平均头实体数: 1.04, 平均尾实体数: 1.05
+
+--- 正在分析 WN18RR 的基础关系属性 (对称、传递、倒置) ---
+
+--- 对称关系 ---
+  关系 '_derivationally_related_form' 近似对称 (93.22%)
+  关系 '_verb_group' 近似对称 (93.15%)
+  关系 '_similar_to' 近似对称 (92.50%)
+
+--- 传递关系（部分检查） ---
+  未发现高于 90% 阈值的高度传递关系，或没有足够的路径进行检查。
+
+--- 倒置关系 ---
+  未发现高于 90% 阈值的强倒置关系对。
+
+--- 正在分析 WN18RR 的特定关系属性 ---
+
+--- 启发式识别的层次关系 ---
+  - _hypernym
+  - _instance_hypernym
+
+--- 启发式识别的组成关系（Part-Whole） ---
+  未发现明显的组成关系。
+
+--- 正在分析 WN18RR 的路径模式 (最多 2 跳) ---
+
+Top 10 条2跳路径模式：
+  (_derivationally_related_form) -> (_derivationally_related_form): 78731 次出现
+  (_hypernym) -> (_derivationally_related_form): 47311 次出现
+  (_hypernym) -> (_hypernym): 31853 次出现
+  (_derivationally_related_form) -> (_hypernym): 25384 次出现
+  (_member_meronym) -> (_hypernym): 6807 次出现
+  (_hypernym) -> (_has_part): 6380 次出现
+  (_member_meronym) -> (_member_meronym): 6285 次出现
+  (_has_part) -> (_has_part): 3714 次出现
+  (_hypernym) -> (_also_see): 3483 次出现
+  (_synset_domain_topic_of) -> (_derivationally_related_form): 3111 次出现
+
+--- 正在分析 WN18RR 的文本特征 ---
+
+--- 关系名称特征 (11 个关系) ---
+  平均关系名称长度（单词数）: 2.55
+  中位数关系名称长度（单词数）: 2.0
+  最常见的关系单词: [('member', 3), ('of', 3), ('domain', 3), ('hypernym', 2), ('region', 1), ('synset', 1), ('topic', 1), ('also', 1), ('see', 1), ('meronym', 1)]
+
+--- 正在识别 WN18RR 的低度实体 (度数 <= 5) ---
+  总独立实体数: 40559
+  低度实体数: 32697
+  低度实体百分比: 80.62%
+
+
+==================== 开始分析 FB15k-237 ====================
+
+--- 正在分析 FB15k-237 的关系模式 ---
+关系模式分布（基于严格的1/N定义）：
+  N-N: 195
+  1-N: 35
+  1-1: 3
+  N-1: 4
+
+按平均头/尾实体数量排序的Top关系（用于说明N-N、1-N、N-1）：
+  /people/marriage_union_type/unions_of_this_type./people/marriage/location_of_ceremony: 平均头实体数: 104.25, 平均尾实体数: 1.02
+  /education/educational_degree/people_with_this_degree./education/education/institution: 平均头实体数: 90.28, 平均尾实体数: 3.60
+  /sports/sports_position/players./sports/sports_team_roster/team: 平均头实体数: 68.63, 平均尾实体数: 3.61
+  /organization/role/leaders./organization/leadership/organization: 平均头实体数: 63.00, 平均尾实体数: 1.03
+  /user/ktrueman/default_domain/international_organization/member_states: 平均头实体数: 44.75, 平均尾实体数: 1.46
+  /food/food/nutrients./food/nutrition_fact/nutrient: 平均头实体数: 43.91, 平均尾实体数: 13.80
+  /location/country/second_level_divisions: 平均头实体数: 42.09, 平均尾实体数: 1.00
+  /award/award_category/nominees./award/award_nomination/nominated_for: 平均头实体数: 39.60, 平均尾实体数: 5.96
+  /olympics/olympic_sport/athletes./olympics/olympic_athlete_affiliation/country: 平均头实体数: 37.37, 平均尾实体数: 10.19
+  /government/government_office_category/officeholders./government/government_position_held/jurisdiction_of_office: 平均头实体数: 33.04, 平均尾实体数: 1.72
+
+--- 正在分析 FB15k-237 的基础关系属性 (对称、传递、倒置) ---
+
+--- 对称关系 ---
+  关系 '/location/hud_county_place/place' 近似对称 (100.00%)
+  关系 '/education/educational_institution_campus/educational_institution' 近似对称 (100.00%)
+  关系 '/education/educational_institution/campuses' 近似对称 (100.00%)
+
+--- 传递关系（部分检查） ---
+  关系 '/people/person/profession' 近似传递 (100.00%) （检查了 14 条潜在路径）
+  关系 '/film/film/genre' 近似传递 (100.00%) （检查了 62 条潜在路径）
+  关系 '/location/country/capital' 近似传递 (100.00%) （检查了 3 条潜在路径）
+  关系 '/location/hud_county_place/place' 近似传递 (100.00%) （检查了 459 条潜在路径）
+  关系 '/film/film_subject/films' 近似传递 (100.00%) （检查了 11 条潜在路径）
+  关系 '/education/educational_institution_campus/educational_institution' 近似传递 (100.00%) （检查了 526 条潜在路径）
+  关系 '/location/hud_county_place/county' 近似传递 (100.00%) （检查了 18 条潜在路径）
+  关系 '/music/group_member/membership./music/group_membership/group' 近似传递 (100.00%) （检查了 1 条潜在路径）
+  关系 '/base/aareas/schema/administrative_area/capital' 近似传递 (100.00%) （检查了 1 条潜在路径）
+  关系 '/education/educational_institution/campuses' 近似传递 (100.00%) （检查了 533 条潜在路径）
+  关系 '/award/award_category/category_of' 近似传递 (100.00%) （检查了 17 条潜在路径）
+  关系 '/location/us_county/county_seat' 近似传递 (100.00%) （检查了 21 条潜在路径）
+
+--- 倒置关系 ---
+  未发现高于 90% 阈值的强倒置关系对。
+
+--- 正在分析 FB15k-237 的特定关系属性 ---
+
+--- 启发式识别的层次关系 ---
+  未发现明显的层次关系。
+
+--- 启发式识别的组成关系（Part-Whole） ---
+  - /location/location/partially_contains
+  - /location/location/contains
+
+--- 正在分析 FB15k-237 的路径模式 (最多 2 跳) ---
+
+Top 10 条2跳路径模式：
+  (/people/person/nationality) -> (/location/location/contains): 2299549 次出现
+  (/soccer/football_team/current_roster./sports/sports_team_roster/position) -> (/sports/sports_position/players./sports/sports_team_roster/team): 1279255 次出现
+  (/soccer/football_team/current_roster./soccer/football_roster_position/position) -> (/sports/sports_position/players./sports/sports_team_roster/team): 1278652 次出现
+  (/film/film/release_date_s./film/film_regional_release_date/film_release_region) -> (/location/location/contains): 1232466 次出现
+  (/film/film/country) -> (/location/location/contains): 1225677 次出现
+  (/people/person/spouse_s./people/marriage/type_of_union) -> (/people/marriage_union_type/unions_of_this_type./people/marriage/location_of_ceremony): 1048929 次出现
+  (/people/person/nationality) -> (/location/country/second_level_divisions): 865891 次出现
+  (/film/film/genre) -> (/media_common/netflix_genre/titles): 614811 次出现
+  (/award/award_nominee/award_nominations./award/award_nomination/award) -> (/award/award_category/nominees./award/award_nomination/nominated_for): 558961 次出现
+  (/film/film/country) -> (/location/country/second_level_divisions): 450574 次出现
+
+--- 正在分析 FB15k-237 的文本特征 ---
+
+--- 关系名称特征 (237 个关系) ---
+  平均关系名称长度（单词数）: 7.95
+  中位数关系名称长度（单词数）: 8.0
+  最常见的关系单词: [('film', 119), ('award', 71), ('sports', 56), ('tv', 44), ('location', 41), ('base', 36), ('people', 33), ('organization', 31), ('of', 29), ('education', 29)]
+
+--- 正在识别 FB15k-237 的低度实体 (度数 <= 5) ---
+  总独立实体数: 14505
+  低度实体数: 1611
+  低度实体百分比: 11.11%
+
+
+========== 开始 FB15K-237 分析 ==========
+
+--- FB15K-237 实体概念类型分析 ---
+
+参与关系最多的前10个实体及其扮演的角色：
+实体: United States of America (/m/09c7w0)
+  作为主语的关系: [('/location/location/contains', 954), ('/location/country/second_level_divisions', 410), ('/olympics/olympic_participating_country/athletes./olympics/olympic_athlete_affiliation/olympics', 36)]
+  作为宾语的关系: [('/people/person/nationality', 3051), ('/film/film/country', 1421), ('/film/film/release_date_s./film/film_regional_release_date/film_release_region', 1266)]
+  总关系数: 8642
+实体: United States Dollar (/m/09nqf)
+  作为主语的关系: [('/common/topic/webpage./common/webpage/category', 1)]
+  作为宾语的关系: [('/film/film/estimated_budget./measurement_unit/dated_money_value/currency', 1409), ('/base/schemastaging/person_extra/net_worth./measurement_unit/dated_money_value/currency', 563), ('/location/statistical_region/rent50_2./measurement_unit/dated_money_value/currency', 458)]
+  总关系数: 4749
+实体: Official Website (/m/08mbj5d)
+  作为主语的关系: []
+  作为宾语的关系: [('/common/topic/webpage./common/webpage/category', 4364)]
+  总关系数: 4364
+实体: Marriage (/m/04ztj)
+  作为主语的关系: [('/people/marriage_union_type/unions_of_this_type./people/marriage/location_of_ceremony', 516), ('/user/tsegaran/random/taxonomy_subject/entry./user/tsegaran/random/taxonomy_entry/taxonomy', 1)]
+  作为宾语的关系: [('/people/person/spouse_s./people/marriage/type_of_union', 3162)]
+  总关系数: 3679
+实体: Male (/m/05zppz)
+  作为主语的关系: []
+  作为宾语的关系: [('/people/person/gender', 3552), ('/medicine/disease/risk_factors', 15)]
+  总关系数: 3567
+实体: English Language (/m/02h40lc)
+  作为主语的关系: [('/language/human_language/countries_spoken_in', 68), ('/education/field_of_study/students_majoring./education/education/student', 11), ('/education/field_of_study/students_majoring./education/education/major_field_of_study', 9)]
+  作为宾语的关系: [('/film/film/language', 1797), ('/people/person/languages', 610), ('/tv/tv_program/languages', 270)]
+  总关系数: 3225
+实体: Actor-GB (/m/02hrh1q)
+  作为主语的关系: [('/dataworld/gardening_hint/split_to', 1)]
+  作为宾语的关系: [('/people/person/profession', 2759), ('/people/profession/specialization_of', 6), ('/dataworld/gardening_hint/split_to', 1)]
+  总关系数: 2767
+实体: United Kingdom (/m/07ssc)
+  作为主语的关系: [('/location/location/contains', 270), ('/media_common/netflix_genre/titles', 139), ('/olympics/olympic_participating_country/medals_won./olympics/olympic_medal_honor/olympics', 32)]
+  作为宾语的关系: [('/film/film/country', 387), ('/film/film/release_date_s./film/film_regional_release_date/film_release_region', 382), ('/people/person/nationality', 366)]
+  总关系数: 2226
+实体: Forward (/m/02sdk9v)
+  作为主语的关系: [('/sports/sports_position/players./sports/sports_team_roster/team', 608), ('/sports/sports_position/players./sports/sports_team_roster/position', 3), ('/people/profession/specialization_of', 1)]
+  作为宾语的关系: [('/soccer/football_team/current_roster./sports/sports_team_roster/position', 597), ('/soccer/football_team/current_roster./soccer/football_roster_position/position', 585), ('/sports/sports_position/players./sports/sports_team_roster/position', 3)]
+  总关系数: 1797
+实体: Midfielder (/m/02nzb8)
+  作为主语的关系: [('/sports/sports_position/players./sports/sports_team_roster/team', 580), ('/sports/sports_position/players./sports/sports_team_roster/position', 2)]
+  作为宾语的关系: [('/soccer/football_team/current_roster./sports/sports_team_roster/position', 601), ('/soccer/football_team/current_roster./soccer/football_roster_position/position', 599), ('/sports/sports_position/players./sports/sports_team_roster/position', 3)]
+  总关系数: 1785
+
+实体伪类型分布：
+  award_nominee: 1789 个实体
+  film: 1630 个实体
+  person: 1382 个实体
+  location: 937 个实体
+  football_team: 727 个实体
+  educational_institution: 701 个实体
+  actor: 679 个实体
+  award_category: 477 个实体
+  topic: 429 个实体
+  genre: 427 个实体
+
+--- 关系与实体伪类型交叉分析（前5个关系）：---
+
+关系: /award/award_nominee/award_nominations./award/award_nomination/award_nominee
+  常见主语伪类型: [('award_nominee', 12001), ('award_winner', 1586), ('actor', 1534)]
+  常见宾语伪类型: [('award_nominee', 11817), ('award_winner', 1691), ('actor', 1577)]
+
+关系: /film/film/release_date_s./film/film_regional_release_date/film_release_region
+  常见主语伪类型: [('film', 15405), ('award_winning_work', 145), ('award_nominated_work', 16)]
+  常见宾语伪类型: [('olympic_participating_country', 6718), ('location', 5001), ('military_combatant', 2212)]
+
+关系: /award/award_nominee/award_nominations./award/award_nomination/award
+  常见主语伪类型: [('award_nominee', 9309), ('actor', 1997), ('person', 1385)]
+  常见宾语伪类型: [('award_category', 14049), ('award', 1), ('topic', 1)]
+
+关系: /people/person/profession
+  常见主语伪类型: [('person', 5299), ('award_nominee', 4481), ('actor', 1568)]
+  常见宾语伪类型: [('profession', 8368), ('gardening_hint', 3795), ('non_character_role', 730)]
+
+关系: /award/award_category/nominees./award/award_nomination/nominated_for
+  常见主语伪类型: [('award_category', 11069)]
+  常见宾语伪类型: [('film', 7415), ('award_winning_work', 3076), ('tv_program', 521)]
+
+--- 关系语义粒度与抽象级别分析 ---
+
+FB15K-237 关系数据为空或格式不匹配，跳过深度分析。
+
+WN18RR 关系类型（通过关系名直接体现粒度）：
+  _hypernym (上位词, 更抽象) 出现次数: 0
+  _derivationally_related_form (派生相关形式, 更具体) 出现次数: 0
+  _member_meronym (成员部分, 相对具体) 出现次数: 0
+  其他常见WN18RR关系 (前5个):
+    /location/country/form_of_government: 1 次
+    /tv/tv_program/regular_cast./tv/regular_tv_appearance/actor: 1 次
+    /media_common/netflix_genre/titles: 1 次
+    /award/award_winner/awards_won./award/award_honor/award_winner: 1 次
+    /soccer/football_team/current_roster./sports/sports_team_roster/position: 1 次
+
+--- 属性关系分析 ---
+
+检测到的前10个属性关系及其频率：
+未检测到明显的属性关系。
+
+--- 关系链的语义一致性/连贯性分析 ---
+
+正在寻找长度为 2 的常见关系链...
+
+检测到的前10个常见关系链 (长度最多 2):
+  链: /film/film/release_date_s./film/film_regional_release_date/film_release_region -> /film/film/release_date_s./film/film_regional_release_date/film_release_region (出现次数: 236365)
+  链: /people/person/profession -> /people/person/profession (出现次数: 219074)
+  链: /common/topic/webpage./common/webpage/category -> /common/topic/webpage./common/webpage/category (出现次数: 218150)
+  链: /people/person/gender -> /people/person/gender (出现次数: 196376)
+  链: /people/person/nationality -> /people/person/nationality (出现次数: 143987)
+  链: /people/person/spouse_s./people/marriage/type_of_union -> /people/person/spouse_s./people/marriage/type_of_union (出现次数: 124336)
+  链: /film/film/country -> /people/person/nationality (出现次数: 114917)
+  链: /film/film/release_date_s./film/film_regional_release_date/film_release_region -> /people/person/nationality (出现次数: 104690)
+  链: /film/film/other_crew./film/film_crew_gig/film_crew_role -> /film/film/other_crew./film/film_crew_gig/film_crew_role (出现次数: 82953)
+  链: /film/film/genre -> /film/film/genre (出现次数: 81172)
+
+
+
+--- 否定/反事实推理潜力分析 ---
+图谱中的实体数量: 14541
+图谱中的关系数量: 237
+图谱中的事实数量: 310116
+
+--- 否定推理潜力 ---
+知识图谱通常遵循开放世界假设 (OWA)，即图中不存在的事实不一定为假。
+要支持否定推理，需要：
+1. 显式的负样本：例如，标记 (A, knows, B) 为假。
+2. 封闭世界假设 (CWA) 的适用领域：例如，数据库查询。
+3. 基于规则的推理：如果A是B的父亲，且B是C的父亲，则A不能是C的兄弟。
+
+示例：随机抽取一对实体和关系，检查其否定情况。
+  事实 (/m/01z0rcq, /film/film/film_format, /m/0299hs) 不存在于图谱中。
+  在OWA下，这不意味着该事实为假。
+  若要推断为假，需要额外的负面证据或特定领域的CWA规则。
+
+--- 实体消歧与多义性分析 ---
+
+--- 通过实体名称识别多义性 (例如：相同名称对应多个实体ID) ---
+检测到 234 个可能存在多义性的名称（前5个）：
+  名称: 'belleville' 对应以下实体ID:
+    - /m/018dhx ("Belleville is a city located at the mouth of the ...)
+    - /m/0sgtz ("Belleville is a city in St. Clair County, Illinoi...)
+  名称: 'hamlet' 对应以下实体ID:
+    - /m/0prhz ("Hamlet is a 1990 drama film based on the Shakespe...)
+    - /m/0prh7 ("Hamlet is a 1996 film version of William Shakespe...)
+    - /m/0kt_4 ("Hamlet is a 1948 British film adaptation of Willi...)
+  名称: 'columbia' 对应以下实体ID:
+    - /m/0cy8v ("Columbia is a planned community comprising 10 sel...)
+    - /m/015_1q ("Columbia Records is a premier recording label, un...)
+    - /m/0fv_t ("Columbia is the state capital and largest city in...)
+    - /m/01z1c ("Columbia is a city in and the county seat of Boon...)
+  名称: 'superman' 对应以下实体ID:
+    - /m/01_mdl ("Superman is a 1978 superhero film directed by Ric...)
+    - /m/070vn ("Superman is a fictional character, a superhero th...)
+  名称: 'kansas city' 对应以下实体ID:
+    - /m/0tcj6 ("Kansas City is the third-largest city in the stat...)
+    - /m/04f_d ("Kansas City, often referred to by its initials, K...)
+
+--- 实体名称的相似性 (例如：不同实体ID有非常相似的名称) ---
+查找名称相似但ID不同的实体对（部分示例）：
+  相似名称对: 'hamlet' (/m/0prhz) 和 'hamlet' (/m/0prh7)
+  相似名称对: 'fargo' (/m/0ynfz) 和 'fargo' (/m/011yhm)
+  相似名称对: 'nico' (/m/01vsqvs) 和 'nicosia' (/m/0fqg8)
+
+========== 开始 WN18RR 分析 ==========
+
+--- WN18RR 实体概念类型分析 ---
+
+实体词性（粗粒度类型）分布：
+  UNKNOWN: 40943 个实体
+
+--- 关系与实体词性交叉分析（前5个关系）：---
+
+关系: _hypernym
+  常见主语词性: [('UNKNOWN', 37221)]
+  常见宾语词性: [('UNKNOWN', 37221)]
+
+关系: _derivationally_related_form
+  常见主语词性: [('UNKNOWN', 31867)]
+  常见宾语词性: [('UNKNOWN', 31867)]
+
+关系: _member_meronym
+  常见主语词性: [('UNKNOWN', 7928)]
+  常见宾语词性: [('UNKNOWN', 7928)]
+
+关系: _has_part
+  常见主语词性: [('UNKNOWN', 5142)]
+  常见宾语词性: [('UNKNOWN', 5142)]
+
+关系: _synset_domain_topic_of
+  常见主语词性: [('UNKNOWN', 3335)]
+  常见宾语词性: [('UNKNOWN', 3335)]
+
+--- 关系语义粒度与抽象级别分析 ---
+
+FB15K-237 关系数据为空或格式不匹配，跳过深度分析。
+
+WN18RR 关系类型（通过关系名直接体现粒度）：
+  _hypernym (上位词, 更抽象) 出现次数: 1
+  _derivationally_related_form (派生相关形式, 更具体) 出现次数: 1
+  _member_meronym (成员部分, 相对具体) 出现次数: 1
+  其他常见WN18RR关系 (前5个):
+    _hypernym: 1 次
+    _derivationally_related_form: 1 次
+    _instance_hypernym: 1 次
+    _also_see: 1 次
+    _member_meronym: 1 次
+
+--- 关系链的语义一致性/连贯性分析 ---
+
+正在寻找长度为 2 的常见关系链...
+
+检测到的前10个常见关系链 (长度最多 2):
+  链: _hypernym -> _hypernym (出现次数: 7339)
+  链: _synset_domain_topic_of -> _synset_domain_topic_of (出现次数: 3471)
+  链: _hypernym -> _member_meronym (出现次数: 2514)
+  链: _derivationally_related_form -> _derivationally_related_form (出现次数: 2004)
+  链: _derivationally_related_form -> _hypernym (出现次数: 1664)
+  链: _hypernym -> _derivationally_related_form (出现次数: 1546)
+  链: _synset_domain_topic_of -> _hypernym (出现次数: 1281)
+  链: _instance_hypernym -> _instance_hypernym (出现次数: 1021)
+  链: _has_part -> _has_part (出现次数: 771)
+  链: _instance_hypernym -> _has_part (出现次数: 631)
+
+
+--- 否定/反事实推理潜力分析 ---
+图谱中的实体数量: 40943
+图谱中的关系数量: 11
+图谱中的事实数量: 93003
+
+--- 否定推理潜力 ---
+知识图谱通常遵循开放世界假设 (OWA)，即图中不存在的事实不一定为假。
+要支持否定推理，需要：
+1. 显式的负样本：例如，标记 (A, knows, B) 为假。
+2. 封闭世界假设 (CWA) 的适用领域：例如，数据库查询。
+3. 基于规则的推理：如果A是B的父亲，且B是C的父亲，则A不能是C的兄弟。
+
+示例：随机抽取一对实体和关系，检查其否定情况。
+  事实 (02389220, _similar_to, 13536016) 不存在于图谱中。
+  在OWA下，这不意味着该事实为假。
+  若要推断为假，需要额外的负面证据或特定领域的CWA规则。
+
+--- 实体消歧与多义性分析 ---
+
+--- 通过实体名称识别多义性 (例如：相同名称对应多个实体ID) ---
+未检测到明显的多义性实体名称（即一个名称对应多个实体ID）。
+
+--- 实体名称的相似性 (例如：不同实体ID有非常相似的名称) ---
+查找名称相似但ID不同的实体对（部分示例）：
+  未找到明显名称相似但ID不同的实体对。
+
+
+WN18RR数据集分析总结
+1、关系模式：
+全部为N-N类型 (11个关系)：这是WN18RR最显著的特征。这意味着每个头实体可能对应多个尾实体，反之亦然。这反映了WordNet中词汇语义的复杂多对多关系（如同义词、上位词等）。
+平均头/尾实体数：关系如_member_of_domain_usage(平均头:25.16)和_synset_domain_topic_of (平均尾:10.08) 显示出高度的N-N特性，即一个概念可以属于多个领域，一个领域也可以包含多个概念。
+2、关系属性：
+对称关系：存在3个近似对称关系：_derivationally_related_form (派生形式), _verb_group (动词组), _similar_to (相似于)。这符合直觉，因为这些关系通常是双向的。
+传递关系：未发现高度传递关系。这可能意味着WN18RR的关系虽然有层次性（如上位词），但其直接编码的传递性并不高，或者需要多跳路径才能体现。
+倒置关系：未发现强倒置关系对。
+3、路径模式：
+主导路径：(_derivationally_related_form) -> (_derivationally_related_form) 是最常见的2跳路径，出现次数远超其他。其次是 _hypernym 与 _derivationally_related_form 的组合。
+结构深度：结合您之前提到的K-跳分布集中在10-15跳（结构更深），以及这里的大量_derivationally_related_form自循环路径，说明WN18RR中概念的“派生”关系非常密集和多层。
+4、文本特征：
+关系名称简洁：平均关系名称长度仅为2.55个单词，中位数为2.0。最常见单词为“member”、“domain”、“of”、“hypernym”等。这表明关系名称非常简洁和抽象，不像Freebase那样提供丰富的上下文。
+5、低度实体：
+高度稀疏：80.62%的实体是低度实体 (度数<= 5)。这表明绝大多数实体只有非常少的连接，数据集非常稀疏。
+
+WN18RR的验证集包含198个未见实体，分布在210个三元组中。测试集包209个未见实体，分布在210个三元组中。
+FB15k-237 数据集分析总结
+1、关系模式：
+多样性：存在 N-N (195个), 1-N (35个), 1-1 (3个), N-1 (4个) 等多种关系模式。与WN18RR的单一N-N形成鲜明对比，FB15k-237更贴近现实世界中知识的复杂性和多样性。
+平均头/尾实体数：观察到大量关系具有明显的1-N或N-1特性，例如 /location/country/second_level_divisions (平均头: 42.09, 平均尾: 1.00) 是典型的 N-1 关系。/people/marriage_union_type/unions_of_this_type./people/marriage/location_of_ceremony (平均头: 104.25, 平均尾: 1.02) 也是高度 N-1 倾向。
+2、关系属性：
+对称关系：存在3个近似对称关系，例如 /location/hud_county_place/place。
+传递关系：发现了多个近似传递关系，例如 /people/person/profession (职业), /film/film/genre (电影类型), /location/country/capital (首都)。这表明FB15k-237中存在较多可推断的逻辑链条。
+倒置关系： 未发现强倒置关系对。
+3、路径模式：
+主导路径：最常见的2跳路径如 (/people/person/nationality) -> (/location/location/contains) 或 (/soccer/football_team/current_roster./sports/sports_team_roster/position) -> (/sports/sports_position/players./sports/sports_team_roster/team)，反映了数据集中人口、地理、体育等领域的事实性知识联系。
+4、文本特征：
+关系名称复杂且信息丰富：平均关系名称长度为7.95个单词，中位数为8.0，远长于WN18RR。最常见单词涉及具体领域如“film”、“award”、“sports”、“tv”、“location”、“people”等。这些名称通常包含命名空间，提供了丰富的文本语义信息。
+5、低度实体：
+相对稀疏： 11.11% 的实体是低度实体 (度数<= 5)。相比WN18RR的80%以上，FB15k-237的实体连接度更高，数据更稠密。
+6、实体概念类型分析：
+最活跃实体： United States of America 是参与关系最多的实体，共 8642 个，主要涉及地理、奥运会、人物国籍、电影国家和发行区域等关系。其他高活跃实体包括 United States Dollar (货币)、Official Website (网站类别)、Marriage (婚姻类型)、Male (性别) 和各种职业（如 Actor-GB）及体育位置（如 Forward, Midfielder）。这表明该图谱在地理、金融、人物、电影和体育领域的数据密度较高。
+实体伪类型分布： 图谱中实体伪类型主要集中在 award_nominee (1789 个), film (1630 个), person (1382 个), location (937 个) 和 football_team (727 个)，这反映了 FB15K-237 主要涵盖了奖项、电影、人物、地理和足球等主题。
+关系与实体伪类型交叉分析：
+award/award_nominee/award_nominations./award/award_nomination/award_nominee 关系主要连接 award_nominee、award_winner 和 actor 伪类型实体。
+film/film/release_date_s./film/film_regional_release_date/film_release_region 关系的主语主要是 film，宾语则常是 olympic_participating_country、location 等。
+people/person/profession 关系连接 person、award_nominee 和 actor 等主语到 profession 等宾语。 这些交叉分析揭示了不同实体类型在特定关系中扮演的主语或宾语角色，体现了图谱内部的语义结构。
+7、关系链的语义一致性/连贯性分析：
+分析发现了大量长度为2的常见关系链，包括许多自环关系链（例如：/film/film/release_date_s./film/film_regional_release_date/film_release_region -> ... 和 /people/person/profession -> ...）。
+还存在跨类型的链，如 /film/film/country -> /people/person/nationality，这表示图谱中实体之间存在高度结构化和重复的连接模式。这些关系链对于路径查询和推理非常重要。
+8、否定/反事实推理潜力分析：
+图谱通常遵循开放世界假设 (OWA)，即图中不存在的事实不一定为假。要支持否定推理，需要显式的负样本、封闭世界假设（CWA）或基于规则的推理。例如，(/m/01z0rcq, /film/film/film_format, /m/0299hs) 这个事实不存在，但仅凭此不能断定其为假。
+9、实体消歧与多义性分析：
+通过实体名称识别多义性： 检测到 234 个可能存在多义性的名称。例如，belleville 对应着两个不同的城市实体，hamlet 对应着多部电影，columbia 对应着城市、唱片公司等多个实体。这表明 FB15K-237 存在明显的同名异义实体问题，即同一个名称可能指代不同的真实世界实体。
+实体名称的相似性： 也发现了一些名称相似但 ID 不同的实体对，如 hamlet 和 hamlet（不同的电影实体），这进一步印证了消歧的必要性。
+
+FB15K-237的验证集包含8个看不见的实体，超过9个三元组。 测试集有29个看不见的实体，分布在28个三元组中。
+
+1、	Static Embedding（Experiment）SimKGC + CompoundE
+2、	Attention Embedding（Experiment）
+3、	RL Embedding（Case Study）
+
+在 MRR 和 Hits@n 外，单独报告低度实体的指标（如 Hits@1 for entities with in-degree ≤3）。
+关系名称	频率
+/award/award_nominee/award_nominations./award/award_nomination/award_nominee	16391
+/film/film/release_date_s./film/film_regional_release_date/film_release_region	15568
+/award/award_nominee/award_nominations./award/award_nomination/award	14051
+/people/person/profession	13382
+/award/award_category/nominees./award/award_nomination/nominated_for	11069
+/film/actor/film./film/performance/film	11045
+/film/film/genre	8649
+/award/award_winner/awards_won./award/award_honor/award_winner	8491
+/music/genre/artists	7134
+/award/award_nominee/award_nominations./award/award_nomination/nominated_for	6483
+/film/film/other_crew./film/film_crew_gig/film_crew_role	6445
+/award/award_category/winners./award/award_honor/award_winner	6070
+/location/location/contains	5834
+/people/person/nationality	5097
+/people/person/gender	4530
+/common/topic/webpage./common/webpage/category	4364
+/people/person/places_lived./people/place_lived/location	4275
+/music/performance_role/track_performances./music/track_contribution/role	3887
+/people/person/spouse_s./people/marriage/type_of_union	3557
+/sports/sports_position/players./sports/sports_team_roster/team	3551
+/award/award_winning_work/awards_won./award/award_honor/award	3536
+/award/award_category/winners./award/award_honor/ceremony	3440
+/award/award_ceremony/awards_presented./award/award_honor/award_winner	3337
+/education/educational_institution/students_graduates./education/education/student	3229
+/education/educational_institution/students_graduates./education/education/major_field_of_study	3219
+/film/film/language	3125
+/award/award_winning_work/awards_won./award/award_honor/award_winner	3040
+/media_common/netflix_genre/titles	2901
+/education/educational_degree/people_with_this_degree./education/education/institution	2788
+/people/person/place_of_birth	2783
+这个是一部分。
