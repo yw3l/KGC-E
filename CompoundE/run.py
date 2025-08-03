@@ -119,29 +119,39 @@ def read_triples(file_path):
     return triples
 
 def load_legacy_dataset(dataset_name):
-    """Loads FB15k-237 and WN18RR datasets."""
+    """Loads FB15k-237 and WN18RR datasets with robust file checking."""
     logging.info(f"Loading legacy dataset: {dataset_name}")
     data_dir = f'../SimKGC/data/{dataset_name}'
 
-    # In SimKGC data folder, they use entities.txt and relations.txt
-    # but CompoundE original code seems to assume entity2id.txt format.
-    # We will assume the files are named entities.txt and relations.txt as in SimKGC.
-    def count_lines(file_path):
-        with open(file_path, 'r', encoding='utf-8') as f:
-            return len(f.readlines())
+    def get_count(name):
+        """Smartly gets entity or relation count from either .json or .txt files."""
+        json_path = os.path.join(data_dir, f'{name}.json')
+        txt_path = os.path.join(data_dir, f'{name}2id.txt')
 
-    nentity = count_lines(os.path.join(data_dir, 'entities.txt'))
-    nrelation = count_lines(os.path.join(data_dir, 'relations.txt'))
+        if os.path.exists(json_path):
+            with open(json_path, 'r', encoding='utf-8') as f:
+                return len(json.load(f))
+        elif os.path.exists(txt_path):
+            with open(txt_path, 'r', encoding='utf-8') as f:
+                # The first line of entity2id.txt/relation2id.txt is the count
+                return int(f.readline().strip())
+        else:
+            raise FileNotFoundError(
+                f"Could not find entity/relation count file. Neither {json_path} nor {txt_path} exists. "
+                f"Please ensure data is in place or run SimKGC's preprocess.sh script."
+            )
+
+    nentity = get_count('entities') if dataset_name == 'FB15k237' else get_count('entity')
+    nrelation = get_count('relations') if dataset_name == 'FB15k237' else get_count('relation')
 
     train_triples = read_triples(os.path.join(data_dir, 'train.txt'))
     valid_triples = read_triples(os.path.join(data_dir, 'valid.txt'))
     test_triples = read_triples(os.path.join(data_dir, 'test.txt'))
 
-    # Convert to the format OGB loader uses (dictionary of numpy arrays)
     def to_split_dict(triples_list):
-        heads = np.array([h for h, r, t in triples_list])
-        rels = np.array([r for h, r, t in triples_list])
-        tails = np.array([t for h, r, t in triples_list])
+        heads = np.array([h for h, r, t in triples_list], dtype=np.int64)
+        rels = np.array([r for h, r, t in triples_list], dtype=np.int64)
+        tails = np.array([t for h, r, t in triples_list], dtype=np.int64)
         return {'head': heads, 'relation': rels, 'tail': tails}
 
     split_dict = {

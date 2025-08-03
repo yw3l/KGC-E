@@ -20,9 +20,18 @@ KGC-E/
 
 请严格按照以下步骤操作，以复现本研究的实验结果。`[DATASET_NAME]` 可以是 `FB15k237` 或 `WN18RR`。
 
-### 第零步：环境配置
+### 第零步：环境与数据准备
 
-在开始前，请确保您已分别配置好 `CompoundE` 和 `SimKGC` 的 Python 环境，并安装了它们各自在 `requirements.txt` 中声明的依赖库。
+1.  **配置 Python 环境**: 
+    *   请确保您已分别为 `CompoundE` 和 `SimKGC` 配置好 Python 环境，并安装了它们各自在 `requirements.txt` 中声明的依赖库。
+
+2.  **预处理 SimKGC 数据 (重要！)**:
+    *   进入 `SimKGC` 目录 (`cd SimKGC`)。
+    *   运行其官方的预处理脚本，为两个数据集生成必要的 `.json` 文件。**此步骤是成功运行后续所有命令的前提**。
+        ```bash
+        bash scripts/preprocess.sh FB15k237
+        bash scripts/preprocess.sh WN18RR
+        ```
 
 ### 第一步：训练基础模型
 
