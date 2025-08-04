@@ -27,7 +27,15 @@ def generate_scores(dataset_name, ckt_path):
     predictor.load(ckt_path, use_data_parallel=False)
 
     # 2. Load entity dictionary
-    entity_dict = build_dict(os.path.join(data_dir, 'entities.txt'))
+    # For WN18RR, entities.dict is what we need.
+    entity_dict_path = os.path.join(data_dir, 'entities.dict')
+    if not os.path.exists(entity_dict_path):
+        # Fallback for other datasets that might use entities.txt
+        entity_dict_path = os.path.join(data_dir, 'entities.txt')
+        if not os.path.exists(entity_dict_path):
+            raise FileNotFoundError(f"Cannot find entity dictionary at {entity_dict_path} or entities.txt")
+
+    entity_dict = build_dict(entity_dict_path)
     all_entities = [Example(head_id='', relation='', tail_id=entity) for entity in entity_dict.keys()]
 
     # 3. Generate embeddings for all entities
@@ -64,6 +72,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if not os.path.exists(args.checkpoint):
-        print(f"Error: Checkpoint path not found at '{args.checkpoint}'.")
+        # Since the checkpoint is often a directory, check for that too
+        if not os.path.isdir(args.checkpoint):
+            print(f"Error: Checkpoint path not found at '{args.checkpoint}'.")
+        else:
+            generate_scores(args.dataset, args.checkpoint)
     else:
         generate_scores(args.dataset, args.checkpoint)
